@@ -8,19 +8,19 @@ Writing is a key element of my work and various processes, such as learning. Mor
 
 Currently, I work with several text editors. They are:
 
-- [iA Writer](https://ia.net/topics/category/writer): In my view, it's the top markdown syntax editor, with minimalism as its prime benefit. Yet, it's not ideal for note management, and all connected features are lacking.
+-   [iA Writer](https://ia.net/topics/category/writer): In my view, it's the top markdown syntax editor, with minimalism as its prime benefit. Yet, it's not ideal for note management, and all connected features are lacking.
 
 ![](https://cloud.overment.com/2024-05-30/tech_ia-ee9f8793-8.png)
 
-- [Paper](https://papereditor.app/): a great candidate to replace iA Writer. The writing experience is even better than iA Writer. Unfortunately, the app has some bugs and limitations, which make me use it only for simple notes.
+-   [Paper](https://papereditor.app/): a great candidate to replace iA Writer. The writing experience is even better than iA Writer. Unfortunately, the app has some bugs and limitations, which make me use it only for simple notes.
 
 ![](https://cloud.overment.com/2024-05-30/tech_ia-ee9f8793-8.png)
 
-- [Obsidian](https://obsidian.md/): an app I rarely write in and usually just paste content from iA Writer or Paper. However, it excels in content organization. Moreover, combined with [Vitepress](https://vitepress.vuejs.org/), it allows me to share most of my notes online as a static website.
+-   [Obsidian](https://obsidian.md/): an app I rarely write in and usually just paste content from iA Writer or Paper. However, it excels in content organization. Moreover, combined with [Vitepress](https://vitepress.vuejs.org/), it allows me to share most of my notes online as a static website.
 
 ![](https://cloud.overment.com/2024-05-30/tech_obsidian-70b500cb-d.png)
 
-- [Notion](https://www.notion.so/): it's the last app where I write content mainly in collaboration with others, to share with others or due to automation (Notion is the only one of the above editors that provides an API, which connects with my services).
+-   [Notion](https://www.notion.so/): it's the last app where I write content mainly in collaboration with others, to share with others or due to automation (Notion is the only one of the above editors that provides an API, which connects with my services).
 
 ![](https://cloud.overment.com/2024-05-30/tech_notion-8972a825-3.png)
 
@@ -32,21 +32,21 @@ When I write, GPT-4 / Claude 3 Opus continuously accompanies me, their role bein
 
 While writing:
 
-- Editor is in full-screen mode
-- Typing on [Wooting 60HE](https://wooting.io/) keyboard
-- Listening to music on [Spotify](https://www.spotify.com/) or [Endel](https://endel.io/)
-- Taking screenshots with [Xnapper](https://xnapper.com/)
-- Generating code snippets in [ray.so](https://ray.so/) via Puppeteer automation macro
-- Optimizing images with a macro linked to [TinyPNG](https://tinypng.com/)
-- Sharing images and files using [Dropshare](https://dropshare.app/)
-- Hosting images and files on [DigitalOcean](https://www.digitalocean.com/)
-- Using converters for HTML -> Markdown, Markdown -> HTML, Notion -> Markdown, and Markdown -> Notion. This allows me to write newsletters and blogs in markdown editor, then automate conversion to the target format. Uploading files to my own hosting is key here.
-- Keyboard settings: \"Key repeat rate\" at maximum and \"Delay until repeat\" at minimum
-- Using `text expander` for frequently repeated phrases like proper names (e.g., .tech becomes Tech•sistence), URLs, email addresses, contact details
-- Navigating almost entirely with the keyboard, avoiding the mouse. Useful shortcuts include: move cursor to start/end of word (`Command + ← or →`), start/end of line (`Option + ← or →`), start/end of paragraph (`Command + ↑ or ↓`), delete next/previous word (`Option + Backspace or Option + Shift + Backspace`), select line/word/paragraph.
-- Using trackpad gestures for controlling music, managing windows/desktops, switching text editor functions, or sending selected text to AI assistant.
-- Utilizing keyboard shortcuts for actions related to screenshots, file optimization, and uploading.
-- Using clipboard manager [Paste](https://setapp.com/apps/paste) for easier text editing and returning to previously copied content (links, snippets).
+-   Editor is in full-screen mode
+-   Typing on [Wooting 60HE](https://wooting.io/) keyboard
+-   Listening to music on [Spotify](https://www.spotify.com/) or [Endel](https://endel.io/)
+-   Taking screenshots with [Xnapper](https://xnapper.com/)
+-   Generating code snippets in [ray.so](https://ray.so/) via Puppeteer automation macro
+-   Optimizing images with a macro linked to [TinyPNG](https://tinypng.com/)
+-   Sharing images and files using [Dropshare](https://dropshare.app/)
+-   Hosting images and files on [DigitalOcean](https://www.digitalocean.com/)
+-   Using converters for HTML -> Markdown, Markdown -> HTML, Notion -> Markdown, and Markdown -> Notion. This allows me to write newsletters and blogs in markdown editor, then automate conversion to the target format. Uploading files to my own hosting is key here.
+-   Keyboard settings: \"Key repeat rate\" at maximum and \"Delay until repeat\" at minimum
+-   Using `text expander` for frequently repeated phrases like proper names (e.g., .tech becomes Tech•sistence), URLs, email addresses, contact details
+-   Navigating almost entirely with the keyboard, avoiding the mouse. Useful shortcuts include: move cursor to start/end of word (`Command + ← or →`), start/end of line (`Option + ← or →`), start/end of paragraph (`Command + ↑ or ↓`), delete next/previous word (`Option + Backspace or Option + Shift + Backspace`), select line/word/paragraph.
+-   Using trackpad gestures for controlling music, managing windows/desktops, switching text editor functions, or sending selected text to AI assistant.
+-   Utilizing keyboard shortcuts for actions related to screenshots, file optimization, and uploading.
+-   Using clipboard manager [Paste](https://setapp.com/apps/paste) for easier text editing and returning to previously copied content (links, snippets).
 
 All the above activities apply to each mentioned application. Even if Notion allows pasting images directly into the document, I still upload them to my server first. Attachments uploaded directly to Notion expire and are accessible only after logging in, which is problematic for automation.
 
@@ -56,7 +56,7 @@ Tasks, emails, and events are another area that I have quite well optimized. Unl
 
 ### Managing tasks
 
-[Linear](https://linear.app/) is used both by our product team and myself to organize my work. All my tasks go here, and I almost never enter or edit their statuses manually. Instead, some entries appear as a result of automation (e.g., a new message with a label or a new file on Google Drive requiring my attention). Other entries I add via voice messages on Apple Watch or messages to the AI assistant on the Slack channel.  
+[Linear](https://linear.app/) is used both by our product team and myself to organize my work. All my tasks go here, and I almost never enter or edit their statuses manually. Instead, some entries appear as a result of automation (e.g., a new message with a label or a new file on Google Drive requiring my attention). Other entries I add via voice messages on Apple Watch or messages to the AI assistant on the Slack channel.
 
 ![](https://cloud.overment.com/2024-05-30/tech_linear-6ac89e32-a.png)
 
@@ -64,10 +64,10 @@ Of all the task management tools, so far I’ve liked Todoist and Linear the mos
 
 So, on the topic of task management:
 
-- I mainly add and edit tasks via voice or simple Slack and Alice messages. The AI then assigns new entries to the appropriate categories, priorities, and deadlines.
-- The organization and updating of entries in Linear is handled by a series of GPT-4 prompts, which consider the rules I've defined once. If needed, I can override them by simply stating that a given task should be assigned to a different project than indicated by the category descriptions.
-- Automation fills a large part of my tasks with various events and schedules. When possible, the AI assistant fetches additional information for the task description.
-- My priority is API availability, as automation allows me to focus on executing tasks, removing most of the organizational burden, except for planning-related activities.
+-   I mainly add and edit tasks via voice or simple Slack and Alice messages. The AI then assigns new entries to the appropriate categories, priorities, and deadlines.
+-   The organization and updating of entries in Linear is handled by a series of GPT-4 prompts, which consider the rules I've defined once. If needed, I can override them by simply stating that a given task should be assigned to a different project than indicated by the category descriptions.
+-   Automation fills a large part of my tasks with various events and schedules. When possible, the AI assistant fetches additional information for the task description.
+-   My priority is API availability, as automation allows me to focus on executing tasks, removing most of the organizational burden, except for planning-related activities.
 
 ### E-mail
 
@@ -87,9 +87,9 @@ Working with email also involves an account connected to an AI assistant, which 
 
 Regarding email management:
 
-- Superhuman's keyboard shortcuts and overall look & feel make working with email enjoyable and fast. Its high price is justified (though this is very subjective).
-- Gmail / Google Workspace is a \"must-have.\"
-- Combining automatic filters with labels and automation greatly simplifies email management, document organization, and prioritization.
+-   Superhuman's keyboard shortcuts and overall look & feel make working with email enjoyable and fast. Its high price is justified (though this is very subjective).
+-   Gmail / Google Workspace is a \"must-have.\"
+-   Combining automatic filters with labels and automation greatly simplifies email management, document organization, and prioritization.
 
 ### Calendar
 
@@ -106,9 +106,9 @@ Notion Calendar in its own way resembles Superhuman and offers intuitive keyboar
 
 On the topic of calendar management:
 
-- Managing entries is done either by voice or through simple messages to an AI assistant (requires custom integrations)
-- Zencal is a brilliant tool for scheduling meetings (including paid ones), which can incorporate various automations (e.g., sending forms before the meeting or notes after the meeting)
-- Notion Calendar is a good, though not perfect, client.
+-   Managing entries is done either by voice or through simple messages to an AI assistant (requires custom integrations)
+-   Zencal is a brilliant tool for scheduling meetings (including paid ones), which can incorporate various automations (e.g., sending forms before the meeting or notes after the meeting)
+-   Notion Calendar is a good, though not perfect, client.
 
 ## Searching Web
 
@@ -128,15 +128,15 @@ I've connected Feedly boards with Make.com automations, so simply pinning a post
 
 So, browsing the web for me means:
 
-- A browser solely for Internet browsing. I don't save bookmarks or other info. Instead, I use macros and automation to organize knowledge in set places, all controlled by LLM (GPT-4-turbo and GPT-4o).
-- Staying updated and exploring new topics with Feedly and sites like [Product Hunt](https://www.producthunt.com/), [daily.dev](https://app.daily.dev/onboarding), [Indie Hackers](https://www.indiehackers.com/), or [HackerNews](https://news.ycombinator.com/).
-- The foundation of the whole system is my custom AI assistant and its long-term memory. Note, this isn't Alice from [heyalice.app](https://heyalice.app), but my private app, which I'm gradually making publicly available.
+-   A browser solely for Internet browsing. I don't save bookmarks or other info. Instead, I use macros and automation to organize knowledge in set places, all controlled by LLM (GPT-4-turbo and GPT-4o).
+-   Staying updated and exploring new topics with Feedly and sites like [Product Hunt](https://www.producthunt.com/), [daily.dev](https://app.daily.dev/onboarding), [Indie Hackers](https://www.indiehackers.com/), or [HackerNews](https://news.ycombinator.com/).
+-   The foundation of the whole system is my custom AI assistant and its long-term memory. Note, this isn't Alice from [heyalice.app](https://heyalice.app), but my private app, which I'm gradually making publicly available.
 
 ## Graphic Design
 
 Designing UI and promotional materials is an integral part of my work. I mainly use [Figma](https://figma.com) and recently returned to [Adobe Photoshop Beta](https://www.adobe.com/products/photoshop.html) due to its Generative AI features, which are excellent for editing images and assets generated in Midjourney.
 
-Below is an example of covers for one of my courses, which I generated in Midjourney with slight editing through Adobe Firefly. 
+Below is an example of covers for one of my courses, which I generated in Midjourney with slight editing through Adobe Firefly.
 
 ![](https://cloud.overment.com/2024-05-30/tech_covers-31b8727b-c.png)
 
@@ -152,17 +152,16 @@ The AI assistant only needs information from me on how to generate the graphic (
 
 ![](https://cloud.overment.com/2024-05-30/tech_gen-cbce636f-e.png)
 
-When designing creations, I always use Midjourney Alpha. I generate various graphic or asset variants there, which I often combine in Photoshop. 
+When designing creations, I always use Midjourney Alpha. I generate various graphic or asset variants there, which I often combine in Photoshop.
 
 ![](https://cloud.overment.com/2024-05-30/tech_mid-829ce30c-9.png)
 
 Summarizing the topic of graphic design:
 
-- I use Generative AI, and currently, Midjourney or Stable Diffusion 3 works best.
-- Figma is undeniably the best available tool for interface design or creating advertisements. It's definitely worth getting to know its more advanced features, which save a lot of time.
-- Webflow combined with HTMLCSSToImage allows for automatic generation of graphics based on templates. Alternatively, you can use the latter tool directly, where you only need an HTML template in which you replace individual elements with automation.
-- Combining LLM with a set of templates allows for easy generation of entire sets of advertisements in various variants.
-
+-   I use Generative AI, and currently, Midjourney or Stable Diffusion 3 works best.
+-   Figma is undeniably the best available tool for interface design or creating advertisements. It's definitely worth getting to know its more advanced features, which save a lot of time.
+-   Webflow combined with HTMLCSSToImage allows for automatic generation of graphics based on templates. Alternatively, you can use the latter tool directly, where you only need an HTML template in which you replace individual elements with automation.
+-   Combining LLM with a set of templates allows for easy generation of entire sets of advertisements in various variants.
 
 ## Programming
 
@@ -170,10 +169,10 @@ Programming is the second (after writing texts) activity that takes up most of m
 
 I use the following tools:
 
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/): This is my main code editor. Although I don't program in JAVA, IntelliJ works great with various programming languages (for me, it's TypeScript and Rust).
-- [Supermaven](https://supermaven.com/): This is an alternative to Github Copilot that I have just started using, and it makes a great first impression by suggesting code very intelligently.
-- [iTerm](https://iterm2.com/): Although I have gone through many different terminals, iTerm won with its simplicity and the fact that it performs its task perfectly.
-- [TablePlus](https://tableplus.com/): This is a great database client for macOS.
+-   [IntelliJ IDEA](https://www.jetbrains.com/idea/): This is my main code editor. Although I don't program in JAVA, IntelliJ works great with various programming languages (for me, it's TypeScript and Rust).
+-   [Supermaven](https://supermaven.com/): This is an alternative to Github Copilot that I have just started using, and it makes a great first impression by suggesting code very intelligently.
+-   [iTerm](https://iterm2.com/): Although I have gone through many different terminals, iTerm won with its simplicity and the fact that it performs its task perfectly.
+-   [TablePlus](https://tableplus.com/): This is a great database client for macOS.
 
 ![](https://cloud.overment.com/2024-05-30/tech_intelij-4283c83e-c.png)
 
@@ -189,10 +188,10 @@ Since the release of ChatGPT, large language models have been my constant compan
 
 So, on the topic of programming:
 
-- I use the best available tools that work for me. For example, despite the enormous popularity of Visual Studio Code, IntelliJ works incomparably better for me. The main argument here is that IntelliJ simply \"understands my code\" much better than VSC.
-- Generative AI is another level of pair programming for me because, in this case, such a partner is available to me all the time and often has much more knowledge than I do, although it quite often makes mistakes. Despite this, the final balance of mistakes with the value I receive is definitely positive.
-- Where justified, I use tools to automate working with code. A \"must-have\" is application deployment, which I always perform through Github Actions.
-- As seen even in the previous points, I use programming skills not only to develop products and work but also to develop tools for my needs. 
+-   I use the best available tools that work for me. For example, despite the enormous popularity of Visual Studio Code, IntelliJ works incomparably better for me. The main argument here is that IntelliJ simply \"understands my code\" much better than VSC.
+-   Generative AI is another level of pair programming for me because, in this case, such a partner is available to me all the time and often has much more knowledge than I do, although it quite often makes mistakes. Despite this, the final balance of mistakes with the value I receive is definitely positive.
+-   Where justified, I use tools to automate working with code. A \"must-have\" is application deployment, which I always perform through Github Actions.
+-   As seen even in the previous points, I use programming skills not only to develop products and work but also to develop tools for my needs.
 
 ## Macros and Automations
 
@@ -234,6 +233,5 @@ Closing this post, I'll just note that the mentioned set is constantly changing.
 
 Have fun,
 Adam
-
 
 #techsistence #newsletter

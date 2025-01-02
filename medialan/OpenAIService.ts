@@ -22,6 +22,7 @@ export class OpenAIService {
     private readonly IM_SEP = "<|im_sep|>";
     private elevenlabs: ElevenLabsClient;
     private groq: Groq;
+    private readonly JINA_API_KEY = process.env.JINA_API_KEY;
 
     constructor() {
         this.openai = new OpenAI();
@@ -33,6 +34,7 @@ export class OpenAIService {
         });
     }
 
+    // Tokenizer for OpenAI GPT models
     private async getTokenizer(modelName: string) {
         if (!this.tokenizers.has(modelName)) {
             const specialTokens: ReadonlyMap<string, number> = new Map([
@@ -46,6 +48,7 @@ export class OpenAIService {
         return this.tokenizers.get(modelName)!;
     }
 
+    // Count the number of tokens in a chat completion request
     async countTokens(
         messages: ChatCompletionMessageParam[],
         model: string = "gpt-4o"
@@ -68,11 +71,57 @@ export class OpenAIService {
         return tokens.length;
     }
 
+    // Create an embedding for a given text
+    async createEmbedding(text: string): Promise<number[]> {
+        try {
+            const response: CreateEmbeddingResponse =
+                await this.openai.embeddings.create({
+                    model: "text-embedding-3-large",
+                    input: text,
+                });
+            return response.data[0].embedding;
+        } catch (error) {
+            console.error("Error creating embedding:", error);
+            throw error;
+        }
+    }
+
+    // Create an embedding using the Jina API
+    async createJinaEmbedding(text: string): Promise<number[]> {
+        try {
+            const response = await fetch("https://api.jina.ai/v1/embeddings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${this.JINA_API_KEY}`,
+                },
+                body: JSON.stringify({
+                    model: "jina-embeddings-v3",
+                    task: "text-matching",
+                    dimensions: 1024,
+                    late_chunking: false,
+                    embedding_type: "float",
+                    input: [text],
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.data[0].embedding;
+        } catch (error) {
+            console.error("Error creating Jina embedding:", error);
+            throw error;
+        }
+    }
+
+    // Perform a chat completion
     async completion(config: {
         messages: ChatCompletionMessageParam[];
         model?: string;
         stream?: boolean;
-        temperature?: number;
         jsonMode?: boolean;
         maxTokens?: number;
     }): Promise<
@@ -85,22 +134,77 @@ export class OpenAIService {
             stream = false,
             jsonMode = false,
             maxTokens = 4096,
-            temperature = 0,
         } = config;
         try {
             const chatCompletion = await this.openai.chat.completions.create({
                 messages,
                 model,
+                ...(model !== "o1-mini" &&
+                    model !== "o1-preview" && {
+                        stream,
+                        max_tokens: maxTokens,
+                        response_format: jsonMode
+                            ? { type: "json_object" }
+                            : { type: "text" },
+                    }),
             });
 
-            return chatCompletion as OpenAI.Chat.Completions.ChatCompletion;
+            return stream
+                ? (chatCompletion as AsyncIterable<OpenAI.Chat.Completions.ChatCompletionChunk>)
+                : (chatCompletion as OpenAI.Chat.Completions.ChatCompletion);
         } catch (error) {
             console.error("Error in OpenAI completion:", error);
             throw error;
         }
     }
 
-    // function to process image
+    // Calculate the token cost of processing an image
+    async calculateImageTokens(
+        width: number,
+        height: number,
+        detail: "low" | "high"
+    ): Promise<number> {
+        let tokenCost = 0;
+
+        if (detail === "low") {
+            tokenCost += 85;
+            return tokenCost;
+        }
+
+        const MAX_DIMENSION = 2048;
+        const SCALE_SIZE = 768;
+
+        // Resize to fit within MAX_DIMENSION x MAX_DIMENSION
+        if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+            const aspectRatio = width / height;
+            if (aspectRatio > 1) {
+                width = MAX_DIMENSION;
+                height = Math.round(MAX_DIMENSION / aspectRatio);
+            } else {
+                height = MAX_DIMENSION;
+                width = Math.round(MAX_DIMENSION * aspectRatio);
+            }
+        }
+
+        // Scale the shortest side to SCALE_SIZE
+        if (width >= height && height > SCALE_SIZE) {
+            width = Math.round((SCALE_SIZE / height) * width);
+            height = SCALE_SIZE;
+        } else if (height > width && width > SCALE_SIZE) {
+            height = Math.round((SCALE_SIZE / width) * height);
+            width = SCALE_SIZE;
+        }
+
+        // Calculate the number of 512px squares
+        const numSquares = Math.ceil(width / 512) * Math.ceil(height / 512);
+
+        // Calculate the token cost
+        tokenCost += numSquares * 170 + 85;
+
+        return tokenCost;
+    }
+
+    // function to process single image
     async processImage(imagePath: string): Promise<ImageProcessingResult> {
         try {
             const image = await fs.readFile(imagePath);
@@ -153,12 +257,14 @@ export class OpenAIService {
         }
     }
 
+    // function to check if response is a stream
     isStreamResponse(
         response: ChatCompletion | AsyncIterable<ChatCompletionChunk>
     ): response is AsyncIterable<ChatCompletionChunk> {
         return Symbol.asyncIterator in response;
     }
 
+    // function to parse JSON response
     parseJsonResponse<IResponseFormat>(
         response: ChatCompletion
     ): IResponseFormat | { error: string; result: boolean } {
@@ -175,20 +281,7 @@ export class OpenAIService {
         }
     }
 
-    async createEmbedding(text: string): Promise<number[]> {
-        try {
-            const response: CreateEmbeddingResponse =
-                await this.openai.embeddings.create({
-                    model: "text-embedding-3-large",
-                    input: text,
-                });
-            return response.data[0].embedding;
-        } catch (error) {
-            console.error("Error creating embedding:", error);
-            throw error;
-        }
-    }
-
+    // function to create a chat completion message
     async speak(text: string) {
         const response = await this.openai.audio.speech.create({
             model: "tts-1",
@@ -201,6 +294,7 @@ export class OpenAIService {
         return stream;
     }
 
+    // function to transcribe audio
     async transcribe(audioBuffer: Buffer): Promise<string> {
         console.log("Transcribing audio...");
 
@@ -212,6 +306,7 @@ export class OpenAIService {
         return transcription.text;
     }
 
+    // function to transcribe audio using Groq
     async transcribeGroq(audioBuffer: Buffer): Promise<string> {
         const transcription = await this.groq.audio.transcriptions.create({
             file: await toFile(audioBuffer, "speech.mp3"),
@@ -221,6 +316,7 @@ export class OpenAIService {
         return transcription.text;
     }
 
+    // function to speak using ElevenLabs
     async speakEleven(
         text: string,
         voice: string = "21m00Tcm4TlvDq8ikWAM",
@@ -239,5 +335,42 @@ export class OpenAIService {
             console.error("Error in ElevenLabs speech generation:", error);
             throw error;
         }
+    }
+
+    // function keyword extraction
+    async extractKeywords(content: string, facts: string[]): Promise<string[]> {
+        console.log("Extracting keywords...");
+        const factsContext =
+            facts.length > 0
+                ? "\n\nAdditional context from facts:\n" + facts.join("\n")
+                : "";
+
+        const messages: ChatCompletionMessageParam[] = [
+            {
+                role: "system",
+                content:
+                    "You are a keyword extraction specialist. Extract key terms in their base form (nominative case for nouns). Return a comma-separated list of keywords. Maximum 10 keywords.",
+            },
+            {
+                role: "user",
+                content: `Extract important keywords from the following text. Return them as a comma-separated list in their base form. Focus on subjects, important terms, and names.
+
+Text:
+${content}${factsContext}`,
+            },
+        ];
+
+        const response = (await this.completion({
+            messages,
+            model: "gpt-4o-mini",
+        })) as OpenAI.Chat.Completions.ChatCompletion;
+
+        const keywords =
+            response.choices[0].message.content
+                ?.split(",")
+                .map((keyword) => keyword.trim())
+                .filter((keyword) => keyword.length > 0) || [];
+
+        return keywords;
     }
 }
