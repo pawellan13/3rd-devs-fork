@@ -84,4 +84,15 @@ export class FileService {
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         );
     }
+
+    async readFileContent(filePath: string): Promise<string> {
+        try {
+            const fullPath = join(this.basePath, filePath);
+            const content = await readFile(fullPath, "utf-8");
+            return content;
+        } catch (error) {
+            console.error(`Error reading file ${filePath}:`, error);
+            throw error;
+        }
+    }
 }
